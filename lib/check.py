@@ -78,7 +78,8 @@ def check_fingerprint(payload):
 #Determine whether the vulnerability is known
 def check_kown(target):
     f = furl(target)
-    ssrf_list = [{'server':'weblogic','path':'/uddiexplorer/SearchPublicRegistries.jsp/uddiexplorer/SearchPublicRegistries.jsp'},{'server':'Splash','path':'/render.html'},{'server':'Typecho','path':'/action/xmlrpc'}]
+    #ssrf_list = [{'server':'weblogic','path':'/uddiexplorer/SearchPublicRegistries.jsp/uddiexplorer/SearchPublicRegistries.jsp'},{'server':'Splash','path':'/render.html'},{'server':'Typecho','path':'/action/xmlrpc'}]
+    ssrf_list = [{'server':'weblogic','path':'/uddiexplorer/SearchPublicRegistries.jsp/uddiexplorer/SearchPublicRegistries.jsp'}]
     for i in ssrf_list:
         if f.path == i['path']:
             logging.info("found the known SSRF vuln in server poc in plugin/{}.py".format(i['server']))
