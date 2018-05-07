@@ -7,7 +7,8 @@ from furl import furl
 
 
 def check_cache(host):
-    file_path = os.path.dirname(os.path.abspath(__file__))
+
+    file_path = os.path.dirname(os.path.dirname('ssrfex.py'))
     result_path = os.path.join(file_path, 'result')
     mkdir_path = os.path.join(result_path, host)
     if os.path.exists(mkdir_path):
@@ -19,10 +20,17 @@ def check_cache(host):
 def out_put(host,filename,data):
     file_path = os.path.dirname(os.path.abspath(__file__))
     result_path = os.path.join(file_path, 'result')
+    f = furl(host)
     output_path = os.path.join(result_path,"{}/{}".format(host,filename))
 
-    fw = open('result/{}/{}'.format(host,filename), 'a')
+    fd = open('result/{}/{}'.format(f.host,filename), 'a')
+    #fd = open('test', 'a')
+    json.dump(data, fd, indent=4)
+
+    '''
+    fw = open('result/{}/{}'.format(f.host,filename), 'a')
     fw.writelines(data)
+    '''
 
 
 
@@ -40,7 +48,7 @@ def dump_console(host="", parameter="", payload="", protocol="",rules="" ,filena
         data += "[+]payload: {0}\n".format(payload)
 
     if protocol:
-        data += "[+]payload: {0}\n".format(protocol)
+        data += "[+]protocol: {0}\n".format(protocol)
 
     if rules:
         for rule in rules:
@@ -53,9 +61,8 @@ def dump_console(host="", parameter="", payload="", protocol="",rules="" ,filena
 
     logging.info("\n---\n" + data + "\n---\n")
 
-    f = furl(host)
 
-    out_put(f.host, filename, data)
+    out_put(host, filename, data.split('\n'))
 
 
 
@@ -86,8 +93,11 @@ def get_requests(target,timeout='',cookie=''):
         timeout = timeout
     else:
         timeout = 5
-    content = requests.get(target,
-                           headers = headers,
-                           timeout = timeout
-                           )
-    return content
+    try:
+        content = requests.get(target,
+                               headers=headers,
+                               timeout=timeout
+                                 )
+        return content
+    except:
+        return None

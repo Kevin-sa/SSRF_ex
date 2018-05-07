@@ -39,8 +39,11 @@ def check_bypass(target, parameter):
         if check_time_content(target_payload,lowerstdlimit):
             avalilable_rules.append(payload['rules'])
 
-    dump_console(host=target,parameter=parameter,rules=avalilable_rules,filename='rules.log')
-
+    if avalilable_rules:
+        dump_console(host=target,parameter=parameter,rules=avalilable_rules,filename='test.log')
+        return True
+    else:
+        return False
 
 
 

