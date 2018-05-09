@@ -72,7 +72,7 @@ lib/testxml.xml规则和payload
 [22, 80, 445, 3306, 6379, 7001, 8080, 11211]
 ```
 ### 内网存活扫描
-dict协议，根据服务内容的hash值~时间~
+dict协议，根据服务内容的hash值~时间~判断
 
 ### 端口扫描攻击特定端口
 ```
@@ -83,4 +83,10 @@ exploit/redis.py -u [host and parameter] -i [redis_ip] -bip [bip] -bport [bport]
 ### 待更新
 * plugin已知SSRF漏洞插件更新：如：Wordpress Discuz Typecho
 * SSRF攻击exploit利用：Jobss Mysql struts tomact memcache php-fpm等
-* 规则规划
+* 规则优化
+* 302跳转、DNS 利用
+
+### 参考
+[SSRF-Testing](https://github.com/cujanovic/SSRF-Testing)
+[SSRF bible Cheatsheet](https://docs.google.com/document/d/1v1TkWZtrhzRLy0bYXBcdLUedXGb9njTNIJXa3u9akHM/edit#)
+[Build Your SSRF Exploit Framework](https://github.com/ring04h)
