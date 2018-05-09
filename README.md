@@ -87,6 +87,6 @@ exploit/redis.py -u [host and parameter] -i [redis_ip] -bip [bip] -bport [bport]
 * 302跳转、DNS 利用
 
 ### 参考
-[SSRF-Testing](https://github.com/cujanovic/SSRF-Testing)
-[SSRF bible Cheatsheet](https://docs.google.com/document/d/1v1TkWZtrhzRLy0bYXBcdLUedXGb9njTNIJXa3u9akHM/edit#)
-[Build Your SSRF Exploit Framework](https://github.com/ring04h)
+[1] :SSRF-Testing "https://github.com/cujanovic/SSRF-Testing"
+[2] :SSRF bible Cheatsheet "https://docs.google.com/document/d/1v1TkWZtrhzRLy0bYXBcdLUedXGb9njTNIJXa3u9akHM/edit#"
+[3] :Build Your SSRF Exploit Framework "https://github.com/ring04h"
